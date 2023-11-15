@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Singing Materials</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
+  <style>
+    #banner {
+      height: 600px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <!-- Nav Section starts here-->
+  <nav class="navbar bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="/Users/ifymac/Documents/singing-materials-online/static/music.png" alt="" width="30" height="24" class="d-inline-block align-text-top"> Singing Materials
+      </a>
+    </div>
+  </nav>
+<!-- Nav Section ends here-->
+
+  <!-- About Section start here-->
+  <img class="img-fluid" id="banner" src="/Users/ifymac/Documents/singing-materials-online/static/soundimage.png">
+  <div class="container">
+    <h2 class="text-center mt-4 mb-4">About Singing Materials</h2>
+    <p class="lead">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</p>
+  <!-- About Section ends here-->
+
+    <!-- Phonon Form starts here -->
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <h2 class="text-center mt-4 mb-4">Play Audible Frequencies</h2>
+        <form action="/submit" method="post">
+
+          <div class="mb-3">
+            <label for="mp_id" class="form-label">MP ID:</label>
+            <input type="text" class="form-control" id="mp_id" name="mp_id" placeholder="Enter MP ID" required>
+          </div>
+          <div class="mb-3">
+            <label for="time_length" class="form-label">Time Length:</label>
+            <input type="text" class="form-control" id="time_length" name="time_length" placeholder="Enter Time Length" required>
+          </div>
+          <div class="mb-3">
+            <label for="min_freq" class="form-label">Minimum Frequency:</label>
+            <input type="number" class="form-control" id="min_freq" name="min_freq" placeholder="Enter Min Frequency">
+          </div>
+          <div class="mb-3">
+            <label for="max_freq" class="form-label">Maximum Frequency:</label>
+            <input type="number" class="form-control" id="max_freq" name="max_freq" placeholder="Enter Max Frequency">
+          </div>
+          
+          <button type="submit" class="btn btn-primary">Play Sound</button>
+        </form>
+      </div>
+    </div>
+    <!-- Phonon Form ends here -->
+<!-- Contact Us  starts here-->
+    <div class="text-center mt-4">
+      <a href="mailto:l.whalley@northumbria.ac.uk?subject=Mail from Our Site" type="button" class="btn btn-outline-primary">Contact Us</a>
+    </div>
+    <!-- Contact Us ends here-->
+  </div>
+  <!-- Footer starts here -->
+  <div class="container">
+    <footer class="py-3 my-4">
+      <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Play Phonon</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+      </ul>
+      <p class="text-center text-body-secondary">&copy; 2023 Singing Materials, Inc</p>
+    </footer>
+    <!-- Footer ends here-->
+    
+  </div>
+</body>
+</html>
