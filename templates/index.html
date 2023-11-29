@@ -15,17 +15,11 @@
 </head>
 <body>
   <!-- Nav Section starts here-->
-  <nav class="navbar bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-        <img src="/Users/ifymac/Documents/singing-materials-online/static/music.png" alt="" width="30" height="24" class="d-inline-block align-text-top"> Singing Materials
-      </a>
-    </div>
-  </nav>
+  {% include 'nav.html' %}
 <!-- Nav Section ends here-->
 
   <!-- About Section start here-->
-  <img class="img-fluid" id="banner" src="/Users/ifymac/Documents/singing-materials-online/static/soundimage.png">
+  <img class="img-fluid" id="banner" src="/static/soundimage.png">
   <div class="container">
     <h2 class="text-center mt-4 mb-4">About Singing Materials</h2>
     <p class="lead">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</p>
@@ -35,23 +29,24 @@
     <div class="row justify-content-center">
       <div class="col-md-6">
         <h2 class="text-center mt-4 mb-4">Play Audible Frequencies</h2>
-        <form action="/submit" method="post">
+        <form id="soundForm" action="/submit" method="post">
 
           <div class="mb-3">
             <label for="mp_id" class="form-label">MP ID:</label>
             <input type="text" class="form-control" id="mp_id" name="mp_id" placeholder="Enter MP ID" required>
           </div>
+          
+          <div class="mb-3">
+            <label for="min_phonon" class="form-label">Minimum Phonon Frequency:</label>
+            <input type="number" class="form-control" id="min_phonon" name="min_phonon" placeholder="Enter Min Phonon Frequency">
+          </div>
+          <div class="mb-3">
+            <label for="max_phonon" class="form-label">Maximum Phonon Frequency:</label>
+            <input type="number" class="form-control" id="max_phonon" name="max_phonon" placeholder="Enter Max Phonon Frequency">
+          </div>
           <div class="mb-3">
             <label for="time_length" class="form-label">Time Length:</label>
             <input type="text" class="form-control" id="time_length" name="time_length" placeholder="Enter Time Length" required>
-          </div>
-          <div class="mb-3">
-            <label for="min_freq" class="form-label">Minimum Frequency:</label>
-            <input type="number" class="form-control" id="min_freq" name="min_freq" placeholder="Enter Min Frequency">
-          </div>
-          <div class="mb-3">
-            <label for="max_freq" class="form-label">Maximum Frequency:</label>
-            <input type="number" class="form-control" id="max_freq" name="max_freq" placeholder="Enter Max Frequency">
           </div>
           
           <button type="submit" class="btn btn-primary">Play Sound</button>
@@ -66,17 +61,8 @@
     <!-- Contact Us ends here-->
   </div>
   <!-- Footer starts here -->
-  <div class="container">
-    <footer class="py-3 my-4">
-      <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Play Phonon</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
-      </ul>
-      <p class="text-center text-body-secondary">&copy; 2023 Singing Materials, Inc</p>
-    </footer>
+    {% include 'footer.html' %}
     <!-- Footer ends here-->
     
-  </div>
 </body>
 </html>
