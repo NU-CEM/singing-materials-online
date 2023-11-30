@@ -6,10 +6,6 @@ import os
 # Flask app initialization
 app = Flask(__name__)
 
-#  loading secret key via env file
-from dotenv import load_dotenv
-project_folder = os.path.expanduser('~/singing-materials-online')  
-load_dotenv(os.path.join(project_folder, '.env'))
 
 # Defines route for root url
 @app.route('/')
