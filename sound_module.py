@@ -7,10 +7,7 @@ from scipy import constants
 import os
 import argparse
  
-#  loading secret key via env file
-from dotenv import load_dotenv
-project_folder = os.path.expanduser('~/singing-materials-online')  
-load_dotenv(os.path.join(project_folder, '.env'))
+
 
 phonon_mesh_filepath = './data/BaS_Fm3m/mesh.yaml'
 sample_rate = 44100
