@@ -1,7 +1,10 @@
 # Import statement
 from flask import Flask, render_template, request
 import subprocess
+from dotenv import load_dotenv
 import os
+
+load_dotenv()
 
 # Flask app initialization
 app = Flask(__name__)
