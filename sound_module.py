@@ -6,16 +6,6 @@ import yaml
 from scipy import constants
 import os
 import argparse
- 
-# #  loading secret key via env file
-# from dotenv import load_dotenv
-# project_folder = os.path.expanduser('~/singing-materials-online')  
-# load_dotenv(os.path.join(project_folder, '.env'))
-from dotenv import load_dotenv
-# Load environment variables from .env file
-project_folder = os.path.dirname(os.path.abspath(__file__))
-load_dotenv(os.path.join(project_folder, '.env'))
-
 
 phonon_mesh_filepath = './data/BaS_Fm3m/mesh.yaml'
 sample_rate = 44100
@@ -106,7 +96,7 @@ def frequencies_from_mp_id(mp_id):
     import mp_api
     from mp_api.client import MPRester
 
-    with MPRester(os.getenv('MP_API_Key')) as mpr:
+    with MPRester(os.environ.get('MP_API_Key')) as mpr:
         try:
             bs = mpr.phonon.get_data_by_id(mp_id).ph_bs
         except:
@@ -216,12 +206,13 @@ def main(args):
         # Create and run the output stream for a set time
         play_chord(timelength)
 
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Phonon Audible Frequencies Player")
     parser.add_argument("mp_ids", nargs='+', help="Materials Project IDs")
     parser.add_argument("--min_phonon", type=float, default=None, help="Minimum phonon frequency in THz")
     parser.add_argument("--max_phonon", type=float, default=None, help="Maximum phonon frequency in THz")
     parser.add_argument("--timelength", type=float, default=5, help="Length of the sample in seconds")
-
+    
     args = parser.parse_args()
     main(args)
