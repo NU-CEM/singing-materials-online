@@ -6,7 +6,6 @@ import yaml
 from scipy import constants
 import os
 import argparse
- 
 
 phonon_mesh_filepath = './data/BaS_Fm3m/mesh.yaml'
 sample_rate = 44100
@@ -207,12 +206,13 @@ def main(args):
         # Create and run the output stream for a set time
         play_chord(timelength)
 
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Phonon Audible Frequencies Player")
     parser.add_argument("mp_ids", nargs='+', help="Materials Project IDs")
     parser.add_argument("--min_phonon", type=float, default=None, help="Minimum phonon frequency in THz")
     parser.add_argument("--max_phonon", type=float, default=None, help="Maximum phonon frequency in THz")
     parser.add_argument("--timelength", type=float, default=5, help="Length of the sample in seconds")
-
+    
     args = parser.parse_args()
     main(args)
