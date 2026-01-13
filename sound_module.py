@@ -4,9 +4,11 @@ import math
 import time
 import yaml
 from scipy import constants
+from dotenv import load_dotenv
 import os
 import argparse
 
+load_dotenv () # use python-dotenv library for storing secrets in a .env file in project route (or at another path that is specified here)
 phonon_mesh_filepath = './data/BaS_Fm3m/mesh.yaml'
 sample_rate = 44100
 min_audible = 20# minimum audible frequency in herz
@@ -96,16 +98,15 @@ def frequencies_from_mp_id(mp_id):
     import mp_api
     from mp_api.client import MPRester
 
-    with MPRester(os.environ.get('MP_API_Key')) as mpr:
+    with MPRester(os.getenv('MP_API_KEY')) as mpr:
         try:
-            bs = mpr.phonon.get_data_by_id(mp_id).ph_bs
+            bs = mpr.get_phonon_bandstructure_by_material_id(mp_id)
         except:
             print("this materials project entry does not appear to have phonon data")
             pass
+    print("extracting frequencies for qpoint {}".format(bs.to_pmg.qpoints[0].cart_coords))
 
-    print("extracting frequencies for qpoint {}".format(bs.qpoints[0].cart_coords))
-
-    phonon_frequencies = list(bs.bands[:,0])
+    phonon_frequencies = list(bs.to_pmg.bands[:,0])
     phonon_frequencies = process_imaginary(phonon_frequencies)
     print("phonon frequencies are (THz):", phonon_frequencies)
 
