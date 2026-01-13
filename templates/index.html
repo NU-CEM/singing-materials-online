@@ -1,74 +1,196 @@
+<!-- 
+TO DO
+--- play button at bottom - maybe
+--- default MP ID e.g. MP-7548
+--- display the chemical formula of material default BaSe3 (but get that programmatically)
+--- show DOS plot
+--- direct contact to github repo README
+--- mathplotlib - to dsiplay graphs?? 
+-->
+
+
 <!DOCTYPE html>
 <html>
 <head>
   <title>Singing Materials</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/nexusui@latest/dist/NexusUI.js"></script>
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous"> -->
   <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
-  <style>
+  <!-- <style>
     #banner {
-      height: 600px;
+      height: 300px;
       width: 100%;
     }
-  </style>
+  </style> -->
 </head>
 <body>
   <!-- Nav Section starts here-->
-  {% include 'nav.html' %}
+  <!-- {% include 'nav.html' %} -->
 <!-- Nav Section ends here-->
 
+  <button type="button" class="button" id="help">ABOUT</button><br><br>
+
+  <div id="help-background">
+    <div id="help-window">
+      <button type="button" class="button" id="close">CLOSE</button>
+      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...<br><br>
+        <!-- You can remove your instrument again by clicking 'remove instrument'.<br><br> -->
+      </p>
+    </div>
+  </div>
+
   <!-- About Section start here-->
-  <img class="img-fluid" id="banner" src="/static/soundimage.png">
+  <!-- <img class="img-fluid" id="banner" src="/static/soundimage.png"> -->
   <div class="container">
-    <h2 class="text-center mt-4 mb-4">About Singing Materials</h2>
-    <p class="lead">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</p>
+    <h1 class="text-center mt-4 mb-4">Singing Materials</h1>
+    <!-- <p class="lead">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</p> -->
   <!-- About Section ends here-->
 
     <!-- Phonon Form starts here -->
+
     <div class="row justify-content-center">
       <div class="col-md-6">
-        <h2 class="text-center mt-4 mb-4">Play Audible Frequencies</h2>
+          <button type="submit" class="btn btn-primary" name="action" value="play">Play Sound</button>
+          <button type="submit" class="btn btn-success ml-2" name="action" value="download">Download WAV</button>
+
+        <br><br> 
+        <div class="tooltip">Comparison Mode: 
+        <span class="tooltiptext">if you want to compare 2 or more materials set the min and max phonon frequncies</span>
+        </div>  
+        <div id="instrument">
+          <!-- <label for="instrument" class="inst-label">Comparison Mode:</label> -->
+       </div>
+
+               <p> Sound Duration: </p>
+
+        <div id="instrument2">
+          
+          <!-- <label for="instrument" class="inst-label">Comparison Mode:</label> -->
+       </div>
+
+
+               <div id="instrument3">
+          <!-- <label for="instrument" class="inst-label">Comparison Mode:</label> -->
+       </div>
+               <p> seconds </p>
+
+        <!-- <h2 class="text-center mt-4 mb-4">Play Audible Frequencies</h2> -->
         <form id="soundForm" action="/submit" method="post">
 
           <div class="mb-3">
-            <label for="mp_id" class="form-label">MP ID:</label>
+            <!-- <label for="mp_id" class="form-label">MP ID:</label> -->
             <input type="text" class="form-control" id="mp_id" name="mp_id" placeholder="Enter MP ID" required>
           </div>
-          
+          <!-- <div class="mb-3"> -->
+            <!-- <label for="time_length" class="form-label">Time Length:</label> -->
+            <!-- <input type="text" class="form-control" id="time_length" name="time_length" placeholder="Enter Time Length" required> -->
+          <!-- </div> -->
           <div class="mb-3">
-            <label for="min_phonon" class="form-label">Minimum Phonon Frequency:</label>
-            <input type="number" class="form-control" id="min_phonon" name="min_phonon" placeholder="Enter Min Phonon Frequency">
+            <!-- <label for="min_phonon" class="form-label">Minimum Phonon Frequency:</label> -->
+            <input type="number" class="form-control" id="min_phonon" name="min_phonon" placeholder="Enter Minimum Phonon Frequency" style="display: none;">
           </div>
           <div class="mb-3">
-            <label for="max_phonon" class="form-label">Maximum Phonon Frequency:</label>
-            <input type="number" class="form-control" id="max_phonon" name="max_phonon" placeholder="Enter Max Phonon Frequency">
+            <!-- <label for="max_phonon" class="form-label">Maximum Phonon Frequency:</label> -->
+            <input type="number" class="form-control" id="max_phonon" name="max_phonon" placeholder="Enter Maximum Phonon Frequency" style="display: none;">
           </div>
-          <div class="mb-3">
-            <label for="time_length" class="form-label">Time Length:</label>
-            <input type="text" class="form-control" id="time_length" name="time_length" placeholder="Enter Time Length" required>
-          </div>
-          
+
           <!-- <button type="submit" class="btn btn-primary" name="action" value="play">Play Sound</button> -->
            <!-- Download WAV button -->
            <!-- <button type="submit" class="btn btn-success ml-2" name="action" value="download">Download WAV</button> -->
            <!-- Inside your form -->
-          <button type="submit" class="btn btn-primary" name="action" value="play">Play Sound</button>
-          <button type="submit" class="btn btn-success ml-2" name="action" value="download">Download WAV</button>
 
         </form>
+
+        
       </div>
     </div>
+
     <!-- Phonon Form ends here -->
     
 <!-- Contact Us  starts here-->
     <div class="text-center mt-4">
-      <a href="mailto:l.whalley@northumbria.ac.uk?subject=Mail from Our Site" type="button" class="btn btn-outline-primary">Contact Us</a>
+      <a href="mailto:l.whalley@northumbria.ac.uk?subject=Mail from Our Site" type="button" class="btn btn-outline-primary contact">Contact Us</a>
     </div>
     <!-- Contact Us ends here-->
   </div>
+
+    <script>
+
+  const helpBt = document.getElementById('help');
+  helpBt.addEventListener("click", makeHelp);
+
+  const closeBt = document.getElementById('close');
+  closeBt.addEventListener("click", closeHelp);
+
+  function makeHelp() {
+    document.getElementById("help-background").style.display = "block";
+  }
+
+  function closeHelp() {
+    document.getElementById("help-background").style.display = "none";
+  }
+
+
+
+  var button = new Nexus.Button('#instrument',{
+  'size': [40,40],
+  'mode': 'toggle',
+  'state': false
+})
+
+button.colorize("accent","#ff595eff")
+// button.colorize("fill","#ff595eff")
+
+
+button.on('change',function(v) {
+  if (v == 1 ) {
+    document.getElementById("min_phonon").style.display = "block";
+     document.getElementById("max_phonon").style.display = "block";
+
+  } else {
+    document.getElementById("min_phonon").style.display = "none";
+    document.getElementById("max_phonon").style.display = "none";
+
+  };
+  console.log(v);
+})
+
+var slider = new Nexus.Slider('#instrument2',{
+    'size': [300,20],
+    // 'mode': 'relative',  // 'relative' or 'absolute'
+    'min': 1,
+    'max': 60,
+    'step': 0.1,
+    'value': 10
+})
+
+slider.colorize("accent","#ff595eff")
+
+slider.on('change',function(v) {
+  number.value = v;
+
+  })
+
+var number = new Nexus.Number('#instrument3', {
+
+  'value': 10,
+  'min': 1,
+  'max': 60,
+})
+
+// number.on('change',function(v) {
+//   slider.value = v;
+
+//   })
+
+
+    </script>
+
   <!-- Footer starts here -->
-    {% include 'footer.html' %}
+    <!-- {% include 'footer.html' %} -->
     <!-- Footer ends here-->
     
 </body>
