@@ -160,7 +160,7 @@ def plot_dos(mp_id)
     plt.ylabel("Density of States")
     plt.title(get_chemical_formula(mp_id))
 
-    return plt
+    return plt.savefig("./static/dos.png",dpi=250,transparent=True)
     
 
 def bose_einstien_distribution(energy,temperature):
