@@ -14,7 +14,6 @@ sample_rate = 44100
 min_audible = 20# minimum audible frequency in herz
 max_audible = 8E3 # maximum audible frequency in herz
 
-
 # this function adapted from
 # https://stackoverflow.com/questions/73494717/trying-to-play-multiple-frequencies-in-python-sounddevice-blow-horrific-speaker
 def callback(outdata: np.ndarray, frames: int, time, status) -> None:
@@ -92,7 +91,7 @@ def process_imaginary(phonon_frequencies):
     return phonon_cleaned_frequencies
 
 def frequencies_from_mp_id(mp_id):
-    """return phonon frequencies at gamma point from for a material hosted on the Materials Project ().
+    """return phonon frequencies (in THz) at gamma point from for a material hosted on the Materials Project.
     Material is identified using unique ID number. Note that to use this feature you need a Materials
     Project API key (https://materialsproject.org/api)."""
     import mp_api
@@ -111,6 +110,58 @@ def frequencies_from_mp_id(mp_id):
     print("phonon frequencies are (THz):", phonon_frequencies)
 
     return phonon_frequencies
+
+def dos_from_mp_id(mp_id):
+    """return density of states evaluated at particular frequencies (in THz).
+    Material is identified using unique ID number. Note that to use this feature you need a Materials
+    Project API key (https://materialsproject.org/api)."""
+    import mp_api
+    from mp_api.client import MPRester
+    from dotenv import load_dotenv
+    load_dotenv () # use python-dotenv library for storing secrets in a .env file in project route (or at another path that is specified here)
+
+    with MPRester(os.getenv('MP_API_KEY')) as mpr:
+        try:
+            dos = mpr.get_phonon_dos_by_material_id(mp_id)
+        except:
+            print("this materials project entry does not appear to have phonon data")
+            pass
+    freqs = dos.to_pmg.frequencies
+    dos = dos.to_pmg.densities
+
+    return freqs, dos
+
+def get_chemical_formula(mp_id):
+    """return string containing chemical formula"""
+    import mp_api
+    from mp_api.client import MPRester
+    from dotenv import load_dotenv
+    load_dotenv () # use python-dotenv library for storing secrets in a .env file in project route (or at another path that is specified here)
+
+    with MPRester(os.getenv('MP_API_KEY')) as mpr:
+        try:
+            material_entry = mpr.materials.summary.search(material_ids=mp_id)
+        except:
+            print("this materials project entry does not seem to exist")
+            pass  
+    chemical_formulae = material_entry[0].formula_pretty
+
+    return chemical_formulae
+
+def plot_dos(mp_id)
+    """return plt object which has dos data plotted in xkcd style"""
+    import matplotlib.pyplot as plt
+    mp_id = "mp-7548"
+    freq, dos = dos_from_mp_id(mp_id)
+
+    plt.xkcd()
+    plt.plot(freq, dos)
+    plt.xlabel("frequency (THz)")
+    plt.ylabel("Density of States")
+    plt.title(get_chemical_formula(mp_id))
+
+    return plt
+    
 
 def bose_einstien_distribution(energy,temperature):
     return 1 / (math.exp(energy/(constants.Boltzmann*temperature)) - 1)
