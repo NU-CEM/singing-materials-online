@@ -2,11 +2,8 @@
 from flask import Flask, render_template, request
 import subprocess
 
-
-
 # Flask app initialization
 app = Flask(__name__)
-
 
 # Defines route for root url
 @app.route('/')
@@ -21,8 +18,11 @@ def submit():
     max_phonon = request.form.get('max_phonon')
     time_length = request.form.get('time_length')
 
+    plot_command = [
+        'python', 'plot_dos.py', *mp_ids]
+
     # Build the command to run the sound_module.py script
-    command = [
+    sound_command = [
         'python', 'sound_module.py',
         *mp_ids,
         '--min_phonon', min_phonon,
@@ -30,12 +30,18 @@ def submit():
         '--timelength', time_length
     ]
 
+    try:
+        subprocess.run(plot_command, check=True)
+    except subprocess.CalledProcessError as e:
+        return f"Error generating plot: {e}"
+
     # Execute the command
     try:
-        subprocess.run(command, check=True)
+        subprocess.run(sound_command, check=True)
         return "Sound generated successfully!"
     except subprocess.CalledProcessError as e:
         return f"Error generating sound: {e}"
+
 
 if __name__ == "__main__":
     app.run(debug=True)
