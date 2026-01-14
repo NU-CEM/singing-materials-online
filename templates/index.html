@@ -101,10 +101,11 @@ TO DO
            <!-- <button type="submit" class="btn btn-success ml-2" name="action" value="download">Download WAV</button> -->
            <!-- Inside your form -->
 
+          <button type="submit" id="submit-gen" class="btn btn-primary" name="action" value="play">Play Sound</button>
+          <button type="submit" id="submit-wav" class="btn btn-success ml-2" name="action" value="download">Download WAV</button>
+
         </form>
 
-          <button type="submit" class="btn btn-primary" name="action" value="play">Play Sound</button>
-          <button type="submit" class="btn btn-success ml-2" name="action" value="download">Download WAV</button>
 
 
         <div class="plot">
@@ -141,7 +142,16 @@ TO DO
     document.getElementById("help-background").style.display = "none";
   }
 
+  const submitBtG = document.getElementById('submit-gen');
+  submitBtG.addEventListener("click", submit);
 
+  const submitBtW = document.getElementById('submit-wav');
+  submitBtW.addEventListener("click", submit);
+
+  function submit() {
+    console.log("submit");
+    console.log(document.getElementById("time_length").value);
+  }
 
   var button = new Nexus.Button('#instrument',{
   'size': [40,40],
