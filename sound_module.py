@@ -148,17 +148,21 @@ def get_chemical_formula(mp_id):
 
     return chemical_formulae
 
-def plot_dos(mp_id)
+def plot_dos(mp_id):
     """return plt object which has dos data plotted in xkcd style"""
     import matplotlib.pyplot as plt
+    import matplotlib as mpl
+    from matplotlib import patheffects
     mp_id = "mp-7548"
     freq, dos = dos_from_mp_id(mp_id)
 
     plt.xkcd()
+    mpl.rcParams['path.effects'] = [patheffects.withStroke(linewidth=0)]
     plt.plot(freq, dos)
-    plt.xlabel("frequency (THz)")
+    plt.xlabel("Frequency (THz)")
     plt.ylabel("Density of States")
     plt.title(get_chemical_formula(mp_id))
+    plt.tight_layout()
 
     return plt.savefig("./static/dos.png",dpi=250,transparent=True)
     
