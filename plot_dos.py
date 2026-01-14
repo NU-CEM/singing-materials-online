@@ -50,6 +50,7 @@ def main(mp_id):
 
     plt.xkcd()
     mpl.rcParams['path.effects'] = [patheffects.withStroke(linewidth=0)]
+    plt.rcParams["figure.figsize"] = (6,3.75)
     plt.plot(freq, dos)
     plt.xlabel("Frequency (THz)")
     plt.ylabel("Density of States")
