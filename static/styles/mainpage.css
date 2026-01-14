@@ -5,6 +5,10 @@
 --frosted-mint: #d8ffddff;
 --steel-blue: #1982c4ff; */
 
+@font-face { font-family: Compagnon; src: url('../font/Compagnon-Bold.otf'); } 
+@font-face { font-family: Movement; src: url('../font/Movement-IndirectThin.otf'); } 
+@font-face { font-family: Feroniapi; src: url('../font/Feroniapi-MediumItalic.otf'); } 
+
 
 html {
   width: 100vw;
@@ -15,31 +19,61 @@ body {
   font-family: monospace, monospace;
   width: 100vw;
   min-height: 100vh;
-  padding: 10px;
+  /* padding: 10px; */
   background: #d8ffddff 
   /* linear-gradient(to bottom right, cyan , pink 70%) */
 }
 
+p {
+  color: #1982c4ff;
+}
+
 h1 {
-  font-family: monospace, monospace;
+  font-family: Feroniapi;
   /* width: 100vw; */
   /* min-height: 100vh; */
-  padding: 20px;
+  padding: 10px;
+  color: #1a936fff;
+  font-size: 60px;
   /* background: linear-gradient(to bottom right, cyan , pink 70%) */
 }
 
-#arse {
-  font-size: 14px;
-  font-family: monospace, monospace;
-  position: fixed;
-  color: white;
-  /* text-align: right; */
-  top: 95%;
+.sing {
+  font-family: Feroniapi;
+  /* width: 100vw; */
+  /* min-height: 100vh; */
+  /* padding: 10px; */
+  position:absolute;
+  top: 20px;
+  padding-left: 20px;
+  color: #1a936fff;
+  font-size: 115px;
+  letter-spacing: -0.05em;
+  /* background: linear-gradient(to bottom right, cyan , pink 70%) */
+}
+.mat {
+  font-family: Feroniapi;
+  /* width: 100vw; */
+  /* min-height: 100vh; */
+  /* padding: 10px; */
+  position:absolute;
+  top: 135px;
+  left: 210px;
+  padding-left: 20px;
+  color: #1a936fff;
+  font-size: 65px;
+  letter-spacing: 0.3em;
+  /* background: linear-gradient(to bottom right, cyan , pink 70%) */
+}
+
+.justify-content-center{
+
+  padding-top: 170px;
+
 }
 
 #table {
   padding: 20px;
-
 }
 
 #instrument {
@@ -47,6 +81,23 @@ h1 {
   margin: 10px;
   padding: 10px;
 }
+
+/* .component {
+  margin: 10px
+  display: flex;
+  background-color: DodgerBlue;
+} */
+
+
+.component {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  /* background-color: dodgerblue; */
+  padding: 10px;
+  text-align: center;
+  align-items: center;
+}
+
 
 /* #instrument {
   padding: 20px;
@@ -62,7 +113,13 @@ h1 {
 #help {
     position: fixed;
     top: 20px;
-    right: 25px;
+    right: 20px;
+}
+
+#contact {
+    position: fixed;
+    top: 90px;
+    right: 20px;
 }
 
 #close {
@@ -83,7 +140,7 @@ h1 {
   display:none;
   position: absolute;
   z-index:99;
-  background-color: #ffca3aff;
+  background-color: #d8ffddff;
   top: 0;
   width: 100%;
   height: 100%;
@@ -115,7 +172,7 @@ input {
   margin-bottom: 10px;
   margin-top: 10px;
   letter-spacing: 0.12em;
-  border: 4px solid #1a936fff;
+  border: 2.5px solid #1982c4ff;
   width: 45%;
   /* background: black; */
 }
@@ -129,7 +186,7 @@ select {
   padding-right: 5px;
   margin-left: 10px;
   letter-spacing: 0.25em;
-  border: 4px solid #1982c4ff;
+  border: 2.5px solid #1982c4ff;
   /* background: black; */
 }
 
@@ -156,9 +213,9 @@ select {
     margin-left: 10px;
     text-align: center;
     cursor: pointer;
-    border: 4px solid #1982c4ff;
+    border: 2.5px solid #1982c4ff;
     transition: all 0.4s ease;
-    border: 4px solid #1982c4ff;
+    border: 2.5px solid #1982c4ff;
 
 }
 
@@ -176,9 +233,9 @@ select {
     margin-left: 10px;
     text-align: center;
     cursor: pointer;
-    border: 4px solid #1982c4ff;
+    border: 2.5px solid #1982c4ff;
     transition: all 0.4s ease;
-    border: 4px solid #1982c4ff;
+    border: 2.5px solid #1982c4ff;
 
 }
 
@@ -260,14 +317,15 @@ select {
 .tooltip {
   position: relative;
   display: inline-block;
-  border-bottom: 1px dotted black;
+  color: #1982c4ff;
+  border-bottom: 1px dotted #1982c4ff;
   cursor: pointer;
 }
 
 .tooltiptext {
   visibility: hidden;
   width: 130px;
-  background-color: black;
+  background-color: #1982c4ff;
   color: #fff;
   text-align: center;
   border-radius: 6px;

@@ -6,6 +6,8 @@ TO DO
 --- show DOS plot
 --- direct contact to github repo README
 --- mathplotlib - to dsiplay graphs?? 
+--- get rid of download and integrate a media player that poops up alongside the plot
+--- look at responsive media page for getting phone compatibility
 -->
 
 
@@ -32,6 +34,9 @@ TO DO
   <!-- {% include 'nav.html' %} -->
 <!-- Nav Section ends here-->
 
+  <div class="container">
+
+
   <button type="button" class="button" id="help">ABOUT</button><br><br>
 
   <div id="help-background">
@@ -43,10 +48,17 @@ TO DO
     </div>
   </div>
 
+  <!-- Contact Us  starts here-->
+  <div class="text-center mt-4">
+      <a href="https://github.com/NU-CEM/singing-materials/blob/main/README.md" type="button" id = "contact" class="button btn">CONTACT</a>
+  </div>
+
   <!-- About Section start here-->
   <!-- <img class="img-fluid" id="banner" src="/static/soundimage.png"> -->
-  <div class="container">
-    <h1 class="text-center mt-4 mb-4">Singing Materials</h1>
+   <div class="sm-title">
+    <div class="sing">Singing</div>
+    <div class="mat">Materials</div>
+  </div>
     <!-- <p class="lead">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</p> -->
   <!-- About Section ends here-->
 
@@ -54,27 +66,25 @@ TO DO
 
     <div class="row justify-content-center">
       <div class="col-md-6">
-  
-        <br><br> 
-        <div class="tooltip">Comparison Mode: 
-        <span class="tooltiptext">if you want to compare 2 or more materials set the min and max phonon frequncies</span>
-        </div>  
-        <div id="instrument">
+        <div class="component">
+          <div class="tooltip">Comparison Mode: 
+            <span class="tooltiptext">if you want to compare 2 or more materials set the min and max phonon frequncies</span>
+          </div>  
+          <div id="instrument">
           <!-- <label for="instrument" class="inst-label">Comparison Mode:</label> -->
+          </div>
        </div>
 
-               <p> Sound Duration: </p>
-
-        <div id="instrument2">
-          
+       <div class="component">
+        <p>Sound Duration:</p>
+        <div id="instrument2"> 
           <!-- <label for="instrument" class="inst-label">Comparison Mode:</label> -->
-       </div>
-
-
-               <div id="instrument3" class="form-control" id="time_length" name="time_length">
+        </div>
+          <div id="instrument3" class="form-control" id="time_length" name="time_length">
           <!-- <label for="instrument" class="inst-label">Comparison Mode:</label> -->
-       </div>
-               <p> seconds </p>
+          </div>
+          <p> seconds </p>
+        </div>
 
         <!-- <h2 class="text-center mt-4 mb-4">Play Audible Frequencies</h2> -->
         <form id="soundForm" action="/submit" method="post">
@@ -101,8 +111,8 @@ TO DO
            <!-- <button type="submit" class="btn btn-success ml-2" name="action" value="download">Download WAV</button> -->
            <!-- Inside your form -->
 
-          <button type="submit" id="submit-gen" class="btn btn-primary" name="action" value="play">Play Sound</button>
-          <button type="submit" id="submit-wav" class="btn btn-success ml-2" name="action" value="download">Download WAV</button>
+          <button type="submit" id="submit-gen" class="btn btn-primary button" name="action" value="play">Play Sound</button>
+          <button type="submit" id="submit-wav" class="btn btn-success ml-2 button" name="action" value="download">Download WAV</button>
 
         </form>
 
@@ -119,15 +129,12 @@ TO DO
 
     <!-- Phonon Form ends here -->
     
-<!-- Contact Us  starts here-->
-    <div class="text-center mt-4">
-      <a href="mailto:l.whalley@northumbria.ac.uk?subject=Mail from Our Site" type="button" class="btn btn-outline-primary contact">Contact Us</a>
-    </div>
-    <!-- Contact Us ends here-->
+
   </div>
 
     <script>
 
+  const component_height = 30;
   const helpBt = document.getElementById('help');
   helpBt.addEventListener("click", makeHelp);
 
@@ -154,13 +161,16 @@ TO DO
   }
 
   var button = new Nexus.Button('#instrument',{
-  'size': [40,40],
+  'size': [component_height,component_height],
   'mode': 'toggle',
   'state': false
 })
 
 button.colorize("accent","#ff595eff")
-// button.colorize("fill","#ff595eff")
+button.colorize("mediumDark","#ff595eff")
+button.colorize("mediumLight","#ff595eff")
+
+button.colorize("fill","white")
 
 
 button.on('change',function(v) {
@@ -177,7 +187,7 @@ button.on('change',function(v) {
 })
 
 var slider = new Nexus.Slider('#instrument2',{
-    'size': [300,20],
+    'size': [400,component_height],
     // 'mode': 'relative',  // 'relative' or 'absolute'
     'min': 1,
     'max': 60,
@@ -186,6 +196,7 @@ var slider = new Nexus.Slider('#instrument2',{
 })
 
 slider.colorize("accent","#ff595eff")
+slider.colorize("fill", "white")
 
 slider.on('change',function(v) {
   document.getElementById("time_length").value = v;
@@ -193,12 +204,18 @@ slider.on('change',function(v) {
   })
 
 var number = new Nexus.Number('#instrument3', {
+  'size': [60,component_height],
   'value': 10,
   'min': 1,
   'max': 60,
 })
 
 number.link(slider)
+
+number.colorize("accent","#ff595eff")
+number.colorize("fill", "white")
+number.colorize("dark","#1982c4ff")
+
 
 number.on('change',function(v) {
   document.getElementById("time_length").value = v;
