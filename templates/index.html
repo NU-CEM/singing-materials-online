@@ -53,9 +53,7 @@ TO DO
 
     <div class="row justify-content-center">
       <div class="col-md-6">
-          <button type="submit" class="btn btn-primary" name="action" value="play">Play Sound</button>
-          <button type="submit" class="btn btn-success ml-2" name="action" value="download">Download WAV</button>
-
+  
         <br><br> 
         <div class="tooltip">Comparison Mode: 
         <span class="tooltiptext">if you want to compare 2 or more materials set the min and max phonon frequncies</span>
@@ -72,7 +70,7 @@ TO DO
        </div>
 
 
-               <div id="instrument3">
+               <div id="instrument3" class="form-control" id="time_length" name="time_length">
           <!-- <label for="instrument" class="inst-label">Comparison Mode:</label> -->
        </div>
                <p> seconds </p>
@@ -84,10 +82,10 @@ TO DO
             <!-- <label for="mp_id" class="form-label">MP ID:</label> -->
             <input type="text" class="form-control" id="mp_id" name="mp_id" placeholder="Enter MP ID" required>
           </div>
-          <!-- <div class="mb-3"> -->
-            <!-- <label for="time_length" class="form-label">Time Length:</label> -->
-            <!-- <input type="text" class="form-control" id="time_length" name="time_length" placeholder="Enter Time Length" required> -->
-          <!-- </div> -->
+          <div class="mb-3" style="display: none;">
+            <label for="time_length" class="form-label">Time Length:</label>
+            <input type="text" class="form-control" id="time_length" name="time_length" placeholder="Enter Time Length" required>
+          </div>
           <div class="mb-3">
             <!-- <label for="min_phonon" class="form-label">Minimum Phonon Frequency:</label> -->
             <input type="number" class="form-control" id="min_phonon" name="min_phonon" placeholder="Enter Minimum Phonon Frequency" style="display: none;">
@@ -103,6 +101,15 @@ TO DO
            <!-- Inside your form -->
 
         </form>
+
+          <button type="submit" class="btn btn-primary" name="action" value="play">Play Sound</button>
+          <button type="submit" class="btn btn-success ml-2" name="action" value="download">Download WAV</button>
+
+
+        <div class="plot">
+          <!-- <img src="pic_trulli.jpg" alt="Italian Trulli"> -->
+          <img class="img-plot" id="plot" src="/static/dos.png" alt="a line plot showing the Density of States of the phonon modes">
+      </div>
 
         
       </div>
@@ -170,21 +177,24 @@ var slider = new Nexus.Slider('#instrument2',{
 slider.colorize("accent","#ff595eff")
 
 slider.on('change',function(v) {
-  number.value = v;
+  document.getElementById("time_length").value = v;
 
   })
 
 var number = new Nexus.Number('#instrument3', {
-
   'value': 10,
   'min': 1,
   'max': 60,
 })
 
-// number.on('change',function(v) {
-//   slider.value = v;
+number.link(slider)
 
-//   })
+number.on('change',function(v) {
+  document.getElementById("time_length").value = v;
+  
+  // slider.value = v;
+
+  })
 
 
     </script>

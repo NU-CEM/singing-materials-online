@@ -279,3 +279,10 @@ select {
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }
+
+.img-plot {
+  width: 100vw;
+  margin: 10px;
+  padding: 10px
+  /* min-height: 100vh; */
+}
