@@ -1,10 +1,6 @@
 <!-- 
 TO DO
---- play button at bottom - maybe
 --- default MP ID e.g. MP-7548
---- display the chemical formula of material default BaSe3 (but get that programmatically)
---- show DOS plot
---- direct contact to github repo README
 --- mathplotlib - to dsiplay graphs?? 
 --- get rid of download and integrate a media player that poops up alongside the plot
 --- look at responsive media page for getting phone compatibility
@@ -118,9 +114,14 @@ TO DO
 
 
 
-        <div class="plot">
+        <div class="plot" id="plot" style="display: none;">
           <!-- <img src="pic_trulli.jpg" alt="Italian Trulli"> -->
-          <img class="img-plot" id="plot" src="/static/dos.png" alt="A line plot showing the Density of States of the material.">
+          <img class="img-plot" src="/static/dos.png" alt="A line plot showing the Density of States of the material.">
+          <audio controls>
+            <source src="horse.ogg" type="audio/ogg">
+            <source src="horse.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
       </div>
 
         
@@ -158,6 +159,7 @@ TO DO
   function submit() {
     console.log("submit");
     console.log(document.getElementById("time_length").value);
+    document.getElementById("plot").style.display = "block";
   }
 
   var button = new Nexus.Button('#instrument',{
