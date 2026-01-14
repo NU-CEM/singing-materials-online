@@ -13,18 +13,18 @@ def index():
 # Defines a route for handling form submissions sent
 @app.route('/submit', methods=['POST'])
 def submit():
-    mp_ids = request.form.getlist('mp_id')
+    mp_id = request.form.get('mp_id')
     min_phonon = request.form.get('min_phonon')
     max_phonon = request.form.get('max_phonon')
     time_length = request.form.get('time_length')
 
     plot_command = [
-        'python', 'plot_dos.py', *mp_ids]
+        'python', 'plot_dos.py', mp_id]
 
     # Build the command to run the sound_module.py script
     sound_command = [
         'python', 'sound_module.py',
-        *mp_ids,
+        mp_id,
         '--min_phonon', min_phonon,
         '--max_phonon', max_phonon,
         '--timelength', time_length

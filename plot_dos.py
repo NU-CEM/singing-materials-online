@@ -43,7 +43,9 @@ def get_chemical_formula(mp_id):
 
 def main(mp_id):
     """return plt object which has dos data plotted in xkcd style"""
-
+    # Process command-line arguments
+    mp_id = args.mp_id
+    
     freq, dos = dos_from_mp_id(mp_id)
 
     plt.xkcd()
@@ -58,7 +60,7 @@ def main(mp_id):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Plot DOS")
-    parser.add_argument("mp_ids", nargs='+', help="Materials Project IDs")
+    parser.add_argument("mp_id", help="Materials Project ID")
 
     args = parser.parse_args()
     main(args)

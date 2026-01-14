@@ -206,7 +206,7 @@ def main(args):
     global audible_dictionary  # global audio_dictionary for callback
 
     # Process command-line arguments
-    mp_ids = args.mp_ids
+    mp_id = args.mp_id
     min_phonon = args.min_phonon
     max_phonon = args.max_phonon
     timelength = args.timelength
@@ -237,35 +237,32 @@ def main(args):
     assert min_phonon is None or max_phonon is None or min_phonon < max_phonon, "min_phonon must be less than max_phonon"
 
     result_data = {}
-
-   # The mp_id variable can be used here to determine which material to process
     
-    for mp_id in mp_ids:
-        # Get phonons (in THz) for the current MP ID
-        phonon_frequencies = frequencies_from_mp_id(mp_id)
-        
-        # Excite by heat and get frequencies
-        phonon_frequencies = excite_by_heat(phonon_frequencies, 300)
-        
-        # Convert phonon frequencies to audible frequencies (return in Hz)
-        audible_frequencies = phonon_to_audible(phonon_frequencies)
-        
-        # Store results for this MP ID
-        result_data[mp_id] = {
-            "phonon_frequencies": phonon_frequencies,
-            "audible_frequencies": audible_frequencies
-        }
+    # Get phonons (in THz) for the current MP ID
+    phonon_frequencies = frequencies_from_mp_id(mp_id)
+    
+    # Excite by heat and get frequencies
+    phonon_frequencies = excite_by_heat(phonon_frequencies, 300)
+    
+    # Convert phonon frequencies to audible frequencies (return in Hz)
+    audible_frequencies = phonon_to_audible(phonon_frequencies)
+    
+    # Store results for this MP ID
+    result_data[mp_id] = {
+        "phonon_frequencies": phonon_frequencies,
+        "audible_frequencies": audible_frequencies
+    }
 
-        # Create global dictionary containing frequencies as keys. This will be used in the output stream.
-        audible_dictionary = dict.fromkeys(audible_frequencies, 0)
+    # Create global dictionary containing frequencies as keys. This will be used in the output stream.
+    audible_dictionary = dict.fromkeys(audible_frequencies, 0)
 
-        # Create and run the output stream for a set time
-        play_chord(timelength)
+    # Create and run the output stream for a set time
+    play_chord(timelength)
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Phonon Audible Frequencies Player")
-    parser.add_argument("mp_ids", nargs='+', help="Materials Project IDs")
+    parser.add_argument("mp_id", help="Materials Project IDs")
     parser.add_argument("--min_phonon", type=float, default=None, help="Minimum phonon frequency in THz")
     parser.add_argument("--max_phonon", type=float, default=None, help="Maximum phonon frequency in THz")
     parser.add_argument("--timelength", type=float, default=5, help="Length of the sample in seconds")
