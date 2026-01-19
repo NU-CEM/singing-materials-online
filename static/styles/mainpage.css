@@ -48,22 +48,38 @@ h1, p {
 
 /* no grid support? */
 .sidebar {
-  float: left;
-  width: 48%;
+  /* flex-basis: 50%; */
+  flex-shrink: 1;
+  /* float: left; */
+  /* width: 48%; */
 }
 
 .content {
-  float: right;
-  width: 48%;
+  /* flex-basis: 50%; */
+  flex-shrink: 1;
+  /* float: right; */
+  /* width: 48%; */
 }
 
 /* make a grid */
+
+.inner-wrapper {
+  max-width: 940px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  /* grid-template-columns: 1fr 1fr; */
+  /* grid-gap: 10px; */
+  overflow: hidden;
+}
+
 .wrapper {
   max-width: 940px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 10px;
+  display: flex;
+  flex-direction: column;
+  /* grid-template-columns: 1fr 1fr; */
+  /* grid-gap: 10px; */
   overflow: hidden;
 }
 
@@ -135,7 +151,7 @@ h1, p {
   /* width: 100vw; */
   /* min-height: 100vh; */
   /* padding: 10px; */
-  position:relative;
+  position:absolute;
   top: 140px;
   left: 100px;
   padding-left: 20px;
@@ -403,7 +419,7 @@ select {
 }
 
 .img-plot {
-  width: 100vw;
+  width: 100%;
   margin: 10px;
   padding: 10px
   /* min-height: 100vh; */
