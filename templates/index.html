@@ -9,12 +9,13 @@ TO DO
 
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Singing Materials</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- <link rel="stylesheet" href="style.css"> -->
-  <link rel= "stylesheet" type= "text/css" href= "../static/styles/mainpage.css">
+  <link rel="stylesheet" type="text/css" href="../static/styles/mainpage.css">
   <script src="https://cdn.jsdelivr.net/npm/nexusui@latest/dist/NexusUI.js"></script>
   <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous"> -->
   <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
@@ -25,213 +26,213 @@ TO DO
     }
   </style> -->
 </head>
+
 <body>
   <!-- Nav Section starts here-->
   <!-- {% include 'nav.html' %} -->
-<!-- Nav Section ends here-->
+  <!-- Nav Section ends here-->
 
-  <div class="container">
-
-
-  <button type="button" class="button" id="help">ABOUT</button><br><br>
-
-  <div id="help-background">
-    <div id="help-window">
-      <button type="button" class="button" id="close">CLOSE</button>
-      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...<br><br>
-        <!-- You can remove your instrument again by clicking 'remove instrument'.<br><br> -->
-      </p>
+    <div id="help-background">
+      <div id="help-window">
+        <button type="button" class="button" id="close">CLOSE</button>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text
+          of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...<br><br>
+          <!-- You can remove your instrument again by clicking 'remove instrument'.<br><br> -->
+        </p>
+      </div>
     </div>
-  </div>
 
-  <!-- Contact Us  starts here-->
-  <div class="text-center mt-4">
-      <a href="https://github.com/NU-CEM/singing-materials/blob/main/README.md" type="button" id = "contact" class="button btn">CONTACT</a>
-  </div>
 
-  <!-- About Section start here-->
-  <!-- <img class="img-fluid" id="banner" src="/static/soundimage.png"> -->
-   <div class="sm-title">
-    <div class="sing">Singing</div>
-    <div class="mat">Materials</div>
-  </div>
-    <!-- <p class="lead">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</p> -->
-  <!-- About Section ends here-->
+  <div class="wrapper">
+    <header class="header">
+
+      <div class="sm-title">
+        <div class="si">S</div>
+        <div class="sing">inging</div>
+        <div class="mat">Materials</div>
+      </div>
+
+      <div class="function-btn">
+        <button type="button" class="button" id="help">ABOUT</button>
+        <div class="text-center mt-4">
+          <a href="https://github.com/NU-CEM/singing-materials/blob/main/README.md" type="button" id="contact"
+            class="button">CONTACT</a>
+        </div>
+      </div>
+    </header>
 
     <!-- Phonon Form starts here -->
 
-    <div class="row justify-content-center">
-      <div class="col-md-6">
+    <!-- <div class="row justify-content-center"> -->
+    <div class="sidebar">
+
+      <!-- <h2 class="text-center mt-4 mb-4">Play Audible Frequencies</h2> -->
+      <form id="soundForm" action="/submit" method="post">
+
+        <div class="">
+          <label for="mp_id" class="form-label">Materials Project ID:</label>
+          <input type="text" class="form-control" id="mp_id" name="mp_id" placeholder="Enter MP ID" required>
+        </div>
+        <div class="" style="display: none;">
+          <label for="time_length" class="form-label">Time Length:</label>
+          <input type="text" class="form-control" id="time_length" name="time_length" placeholder="Enter Time Length"
+            required>
+        </div>
+
+        <!-- <button type="submit" class="btn btn-primary" name="action" value="play">Play Sound</button> -->
+        <!-- Download WAV button -->
+        <!-- <button type="submit" class="btn btn-success ml-2" name="action" value="download">Download WAV</button> -->
+        <!-- Inside your form -->
+
         <div class="component">
-          <div class="tooltip">Comparison Mode: 
-            <span class="tooltiptext">if you want to compare 2 or more materials set the min and max phonon frequncies</span>
-          </div>  
+          <div class="tooltip">Comparison Mode:
+            <span class="tooltiptext">if you want to compare 2 or more materials set the min and max phonon
+              frequncies</span>
+          </div>
           <div id="instrument">
-          <!-- <label for="instrument" class="inst-label">Comparison Mode:</label> -->
+            <!-- <label for="instrument" class="inst-label">Comparison Mode:</label> -->
           </div>
-       </div>
-
-       <div class="component">
-        <p>Sound Duration:</p>
-        <div id="instrument2"> 
-          <!-- <label for="instrument" class="inst-label">Comparison Mode:</label> -->
-        </div>
-          <div id="instrument3" class="form-control" id="time_length" name="time_length">
-          <!-- <label for="instrument" class="inst-label">Comparison Mode:</label> -->
-          </div>
-          <p> seconds </p>
         </div>
 
-        <!-- <h2 class="text-center mt-4 mb-4">Play Audible Frequencies</h2> -->
-        <form id="soundForm" action="/submit" method="post">
+        <div class="component">
+          <!-- <label for="min_phonon" class="form-label">Minimum Phonon Frequency:</label> -->
+          <input type="number" class="form-control" id="min_phonon" name="min_phonon"
+            placeholder="Enter Minimum Phonon Frequency" style="display: none;">
+        </div>
+        <div class="">
+          <!-- <label for="max_phonon" class="form-label">Maximum Phonon Frequency:</label> -->
+          <input type="number" class="form-control" id="max_phonon" name="max_phonon"
+            placeholder="Enter Maximum Phonon Frequency" style="display: none;">
+        </div>
 
-          <div class="mb-3">
-            <!-- <label for="mp_id" class="form-label">MP ID:</label> -->
-            <input type="text" class="form-control" id="mp_id" name="mp_id" placeholder="Enter MP ID" required>
+        <div class="component">
+          <p>Sound Duration:</p>
+          <div id="instrument2">
+            <!-- <label for="instrument" class="inst-label">Comparison Mode:</label> -->
           </div>
-          <div class="mb-3" style="display: none;">
-            <label for="time_length" class="form-label">Time Length:</label>
-            <input type="text" class="form-control" id="time_length" name="time_length" placeholder="Enter Time Length" required>
+          <div class="sl-dur">
+            <div id="instrument3" class="form-control" id="time_length" name="time_length">
+              <!-- <label for="instrument" class="inst-label">Comparison Mode:</label> -->
+            </div>
+            <p> seconds </p>
           </div>
-          <div class="mb-3">
-            <!-- <label for="min_phonon" class="form-label">Minimum Phonon Frequency:</label> -->
-            <input type="number" class="form-control" id="min_phonon" name="min_phonon" placeholder="Enter Minimum Phonon Frequency" style="display: none;">
-          </div>
-          <div class="mb-3">
-            <!-- <label for="max_phonon" class="form-label">Maximum Phonon Frequency:</label> -->
-            <input type="number" class="form-control" id="max_phonon" name="max_phonon" placeholder="Enter Maximum Phonon Frequency" style="display: none;">
-          </div>
+        </div>
 
-          <!-- <button type="submit" class="btn btn-primary" name="action" value="play">Play Sound</button> -->
-           <!-- Download WAV button -->
-           <!-- <button type="submit" class="btn btn-success ml-2" name="action" value="download">Download WAV</button> -->
-           <!-- Inside your form -->
+        <div class="component">
+          <button type="submit" id="submit-gen" class="button" name="action" value="play">Generate
+            Sound</button>
+          <!-- <button type="submit" id="submit-wav" class="btn btn-success ml-2 button" name="action" value="download">Download WAV</button> -->
+        </div>
+      </form>
+    </div>
 
-          <button type="submit" id="submit-gen" class="btn btn-primary button" name="action" value="play">Play Sound</button>
-          <button type="submit" id="submit-wav" class="btn btn-success ml-2 button" name="action" value="download">Download WAV</button>
+    <!-- Data plot and soundfile display -->
 
-        </form>
+    <div class="content">
 
-
-
-        <div class="plot" id="plot" style="display: none;">
+      <div class="plot" id="plot" style="visibility: hidden;">
+        <div class="plot">
           <!-- <img src="pic_trulli.jpg" alt="Italian Trulli"> -->
           <img class="img-plot" src="/static/dos.png" alt="A line plot showing the Density of States of the material.">
           <audio controls>
-            <source src="horse.ogg" type="audio/ogg">
-            <source src="horse.mp3" type="audio/mpeg">
+            <!-- <source src="dos.wav" type="audio/wav"> -->
             Your browser does not support the audio element.
           </audio>
+        </div>
       </div>
 
-        
-      </div>
     </div>
-
-    <!-- Phonon Form ends here -->
-    
 
   </div>
 
-    <script>
+  <script>
 
-  const component_height = 30;
-  const helpBt = document.getElementById('help');
-  helpBt.addEventListener("click", makeHelp);
+    const component_height = 30;
 
-  const closeBt = document.getElementById('close');
-  closeBt.addEventListener("click", closeHelp);
+    const helpBt = document.getElementById('help');
+    helpBt.addEventListener("click", makeHelp);
 
-  function makeHelp() {
-    document.getElementById("help-background").style.display = "block";
-  }
+    const closeBt = document.getElementById('close');
+    closeBt.addEventListener("click", closeHelp);
 
-  function closeHelp() {
-    document.getElementById("help-background").style.display = "none";
-  }
+    function makeHelp() {
+      document.getElementById("help-background").style.display = "block";
+    }
 
-  const submitBtG = document.getElementById('submit-gen');
-  submitBtG.addEventListener("click", submit);
+    function closeHelp() {
+      document.getElementById("help-background").style.display = "none";
+    }
 
-  const submitBtW = document.getElementById('submit-wav');
-  submitBtW.addEventListener("click", submit);
+    const submitBtG = document.getElementById('submit-gen');
+    submitBtG.addEventListener("click", submit);
 
-  function submit() {
-    console.log("submit");
-    console.log(document.getElementById("time_length").value);
-    document.getElementById("plot").style.display = "block";
-  }
+    function submit() {
+      console.log("submit");
+      console.log(document.getElementById("time_length").value);
+      document.getElementById("plot").style.visibility = "visible";
+    }
 
-  var button = new Nexus.Button('#instrument',{
-  'size': [component_height,component_height],
-  'mode': 'toggle',
-  'state': false
-})
+    var button = new Nexus.Button('#instrument', {
+      'size': [component_height, component_height],
+      'mode': 'toggle',
+      'state': false
+    })
 
-button.colorize("accent","#ff595eff")
-button.colorize("mediumDark","#ff595eff")
-button.colorize("mediumLight","#ff595eff")
+    button.colorize("accent", "#ef767aff")
+    button.colorize("mediumDark", "#ef767aff")
+    button.colorize("mediumLight", "#ef767aff")
+    button.colorize("fill", "white")
 
-button.colorize("fill","white")
+    button.on('change', function (v) {
+      if (v == 1) {
+        document.getElementById("min_phonon").style.display = "block";
+        document.getElementById("max_phonon").style.display = "block";
+      } else {
+        document.getElementById("min_phonon").style.display = "none";
+        document.getElementById("max_phonon").style.display = "none";
+      };
+      console.log(v);
+    })
 
+    var slider = new Nexus.Slider('#instrument2', {
+      'size': [400, component_height],
+      'min': 1,
+      'max': 60,
+      'step': 0.1,
+      'value': 10
+    })
 
-button.on('change',function(v) {
-  if (v == 1 ) {
-    document.getElementById("min_phonon").style.display = "block";
-     document.getElementById("max_phonon").style.display = "block";
+    slider.colorize("accent", "#ef767aff")
+    slider.colorize("fill", "white")
 
-  } else {
-    document.getElementById("min_phonon").style.display = "none";
-    document.getElementById("max_phonon").style.display = "none";
+    slider.on('change', function (v) {
+      document.getElementById("time_length").value = v;
+    })
 
-  };
-  console.log(v);
-})
+    var number = new Nexus.Number('#instrument3', {
+      'size': [60, component_height],
+      'value': 10,
+      'min': 1,
+      'max': 60,
+    })
 
-var slider = new Nexus.Slider('#instrument2',{
-    'size': [400,component_height],
-    // 'mode': 'relative',  // 'relative' or 'absolute'
-    'min': 1,
-    'max': 60,
-    'step': 0.1,
-    'value': 10
-})
+    number.link(slider)
 
-slider.colorize("accent","#ff595eff")
-slider.colorize("fill", "white")
+    number.colorize("accent", "#0d2b93ff")
+    number.colorize("fill", "white")
+    number.colorize("dark", "0d2b93ff")
 
-slider.on('change',function(v) {
-  document.getElementById("time_length").value = v;
+    number.on('change', function (v) {
+      document.getElementById("time_length").value = v;
+    })
 
-  })
-
-var number = new Nexus.Number('#instrument3', {
-  'size': [60,component_height],
-  'value': 10,
-  'min': 1,
-  'max': 60,
-})
-
-number.link(slider)
-
-number.colorize("accent","#ff595eff")
-number.colorize("fill", "white")
-number.colorize("dark","#1982c4ff")
-
-
-number.on('change',function(v) {
-  document.getElementById("time_length").value = v;
-  
-  // slider.value = v;
-
-  })
-
-
-    </script>
+  </script>
 
   <!-- Footer starts here -->
-    <!-- {% include 'footer.html' %} -->
-    <!-- Footer ends here-->
-    
+  <!-- {% include 'footer.html' %} -->
+  <!-- Footer ends here-->
+
 </body>
+
 </html>

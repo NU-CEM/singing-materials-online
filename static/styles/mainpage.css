@@ -3,50 +3,129 @@
 --sea-green: #1a936fff;
 --golden-pollen: #ffca3aff;
 --frosted-mint: #d8ffddff;
---steel-blue: #1982c4ff; */
+--steel-blue: #1982c4ff; 
+
+
+--frosted-mint: #d8ffddff;
+--true-cobalt: #0d2b93ff;
+--shamrock: #32965dff;
+--deep-saffron: #ff9914ff;
+--sweet-peony: #e06c9fff;
+
+
+--frosted-mint: #d8ffddff;
+--true-cobalt: #0d2b93ff;
+--light-coral: #ef767aff;  rgb(239, 166, 168)
+--canary-yellow: #faff81ff;
+--carbon-black: #111d13ff;
+*/
 
 @font-face { font-family: Compagnon; src: url('../font/Compagnon-Bold.otf'); } 
 @font-face { font-family: Movement; src: url('../font/Movement-IndirectThin.otf'); } 
 @font-face { font-family: Feroniapi; src: url('../font/Feroniapi-MediumItalic.otf'); } 
 
 
-html {
+/* html {
   width: 100vw;
   min-height: 100vh;
+} */
+
+
+*, *:before, *:after {
+  box-sizing: border-box;
 }
 
 body {
-  font-family: monospace, monospace;
-  width: 100vw;
-  min-height: 100vh;
-  /* padding: 10px; */
+  font-family: Arial, Helvetica, sans-serif;
+  color: #0d2b93ff;
+  margin: 40px;
   background: #d8ffddff 
-  /* linear-gradient(to bottom right, cyan , pink 70%) */
 }
 
-p {
-  color: #1982c4ff;
+h1, p {
+  margin: 0 0 1em 0;
 }
 
-h1 {
-  font-family: Feroniapi;
-  /* width: 100vw; */
-  /* min-height: 100vh; */
-  padding: 10px;
-  color: #1a936fff;
-  font-size: 60px;
-  /* background: linear-gradient(to bottom right, cyan , pink 70%) */
+/* no grid support? */
+.sidebar {
+  float: left;
+  width: 48%;
 }
 
-.sing {
+.content {
+  float: right;
+  width: 48%;
+}
+
+/* make a grid */
+.wrapper {
+  max-width: 940px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+  overflow: hidden;
+}
+
+.wrapper > * {
+  /* background-color: #444; */
+  /* color: #fff; */
+  /* border-radius: 5px; */
+  padding: 20px;
+  /* font-size: 150%; */
+  /* needed for the floated layout*/
+  margin-bottom: 10px;
+}
+
+.header {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* needed for the floated layout */
+  clear: both;
+}
+
+
+/* We need to set the widths used on floated items back to auto, and remove the bottom margin as when we have grid we have gaps. */
+@supports (display: grid) {
+  .wrapper > * {
+    width: auto;
+    margin: 0;
+  }
+}
+
+
+.sm-title {
+  /* position: absolute; */
+  display: flex;
+  /* height: 50vh; */
+  /* width: 50vw; */
+  left: 10px;
+  top: 0px;
+} 
+
+.si {
   font-family: Feroniapi;
   /* width: 100vw; */
   /* min-height: 100vh; */
   /* padding: 10px; */
   position:absolute;
-  top: 20px;
-  padding-left: 20px;
-  color: #1a936fff;
+  top: 0px;
+  left: 20px;
+  color: #111d13ff;
+  font-size: 150px;
+  /* background: linear-gradient(to bottom right, cyan , pink 70%) */
+}
+.sing {
+  font-family: Feroniapi;
+  /* width: 100vw; */
+  /* min-height: 100vh; */
+  /* padding: 10px; */
+  position: absolute;
+  top: 10px;
+  left: 115px;
+  color: #111d13ff;
   font-size: 115px;
   letter-spacing: -0.05em;
   /* background: linear-gradient(to bottom right, cyan , pink 70%) */
@@ -56,24 +135,45 @@ h1 {
   /* width: 100vw; */
   /* min-height: 100vh; */
   /* padding: 10px; */
-  position:absolute;
-  top: 135px;
-  left: 210px;
+  position:relative;
+  top: 140px;
+  left: 100px;
   padding-left: 20px;
-  color: #1a936fff;
-  font-size: 65px;
+  color: #111d13ff;
+  font-size: 60px;
   letter-spacing: 0.3em;
   /* background: linear-gradient(to bottom right, cyan , pink 70%) */
 }
 
-.justify-content-center{
+/* .justify-content-center{
 
   padding-top: 170px;
 
+} */
+
+/* .header {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  height: 50%;
+  justify-content: space-around;
+  align-items: center;
+} */
+
+.function-btn {
+  /* width: 50%; */
+  /* height: 100%; */
+  /* padding: 10px; */
+  display: flex;
+  gap: 20px;
+  /* display: flex; */
+  /* justify-content: space-around; */
+  align-items: flex-end;
+  flex-direction: column;
 }
 
 #table {
-  padding: 20px;
+  padding: 10px;
 }
 
 #instrument {
@@ -82,19 +182,24 @@ h1 {
   padding: 10px;
 }
 
-/* .component {
-  margin: 10px
-  display: flex;
-  background-color: DodgerBlue;
-} */
-
 
 .component {
-  display: grid;
-  grid-template-columns: auto auto auto auto auto;
+  display: flex;
+  /* grid-template-columns: auto auto auto auto auto; */
   /* background-color: dodgerblue; */
   padding: 10px;
-  text-align: center;
+  /* text-align: center; */
+  justify-content: center;
+  align-items: center;
+}
+
+.sl-dur {
+  display: flex;
+  /* grid-template-columns: auto auto auto auto auto; */
+  /* background-color: dodgerblue; */
+  padding: 10px;
+  /* text-align: center; */
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -110,7 +215,7 @@ h1 {
   /* background: black; */
 /* } */ 
 
-#help {
+/* #help {
     position: fixed;
     top: 20px;
     right: 20px;
@@ -120,20 +225,21 @@ h1 {
     position: fixed;
     top: 90px;
     right: 20px;
-}
+} */
 
 #close {
     position:absolute;
     /* right:5vw; */
     /* position: fixed; */
-    top: 20px;
-    right: 25px;
+    top: 10px;
+    right: 10px;
 }
 
 #help-window p {
   font-size: 20px;
-  font-family: monospace, monospace;
-  color: #1982c4ff;
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 0.1em;
+  color: #0D2B93;
 }
 
 #help-background {
@@ -151,14 +257,15 @@ h1 {
   z-index:99999;
   top:10vh;
   left:10vw;
-  background-color: #ffca3aff;
+  background-color: rgb(239, 166, 168);
   width: 80vw;
   height: 80vh;
   padding: 20px;
+  padding-top: 70px;
   border-radius: 10px;
-  border: 4px solid #1982c4ff;
+  border: 2.5px solid #0D2B93;
   transition: all 0.4s ease;
-  border: 4px solid #1982c4ff;
+  border: 2.5px solid #0D2B93;
 }
 
 input {
@@ -172,7 +279,7 @@ input {
   margin-bottom: 10px;
   margin-top: 10px;
   letter-spacing: 0.12em;
-  border: 2.5px solid #1982c4ff;
+  border: 2.5px solid #0D2B93;
   width: 45%;
   /* background: black; */
 }
@@ -186,7 +293,7 @@ select {
   padding-right: 5px;
   margin-left: 10px;
   letter-spacing: 0.25em;
-  border: 2.5px solid #1982c4ff;
+  border: 2.5px solid #0D2B93;
   /* background: black; */
 }
 
@@ -196,82 +303,39 @@ select {
 } */
 
 .highlight {
-  background-color: yellow;
+  background-color: #ef767aff;;
 }
 
 .button{
-    background-color: #ffca3aff;
+    background-color: rgb(239, 166, 168);;
     border-radius: 10px;
     font-weight: bold;
     font-size: 18px;
-    font-family: monospace;
+    font-family: Arial, Helvetica, sans-serif;
     letter-spacing: 0.25em;
-    color: #1982c4ff;
+    color: #0D2B93;
     padding: 15px;
     /* padding-left: 15px; */
     /* padding-right: 15px; */
-    margin-left: 10px;
+    margin: 10px;
     text-align: center;
     cursor: pointer;
-    border: 2.5px solid #1982c4ff;
+    border: 2.5px solid #0D2B93;
     transition: all 0.4s ease;
-    border: 2.5px solid #1982c4ff;
+    border: 2.5px solid #0D2B93;
 
 }
 
-.btn{
-    background-color: #ffca3aff;
-    border-radius: 10px;
-    font-weight: bold;
-    font-size: 18px;
-    font-family: monospace;
-    letter-spacing: 0.25em;
-    color: #1982c4ff;
-    padding: 15px;
-    /* padding-left: 15px; */
-    /* padding-right: 15px; */
-    margin-left: 10px;
-    text-align: center;
-    cursor: pointer;
-    border: 2.5px solid #1982c4ff;
-    transition: all 0.4s ease;
-    border: 2.5px solid #1982c4ff;
-
-}
-
-.contact{
+/* .contact{
     position: fixed;
     bottom: 20px;
     right: 50%;
-}
+} */
 
 .button:hover{
-    background-color: #ff595eff;
+    color: #d8ffddff;
+    background-color: #0D2B93;
 }
-
-/* #algo .button {
-    background-color: #00CED1;
-    border-radius: 10px;
-    font-weight: bold;
-    font-size: 18px;
-    font-family: monospace;
-    letter-spacing: 0.25em;
-    color: white;
-    padding: 15px;
-    /* padding-left: 15px; */
-    /* padding-right: 15px; */
-  /*  margin-left: 10px;
-    text-align: center;
-    cursor: pointer;
-    border: 4px solid white;
-    transition: all 0.4s ease;
-    border: 4px solid white;
-
-} */
-
-/* #algo .button:hover{
-    background-color: #ff595eff;
-} */
 
 .slidecontainer {
   width: 100%;
@@ -317,15 +381,15 @@ select {
 .tooltip {
   position: relative;
   display: inline-block;
-  color: #1982c4ff;
-  border-bottom: 1px dotted #1982c4ff;
+  color: #0D2B93;
+  border-bottom: 1px dotted #0D2B93;
   cursor: pointer;
 }
 
 .tooltiptext {
   visibility: hidden;
   width: 130px;
-  background-color: #1982c4ff;
+  background-color: #0D2B93;
   color: #fff;
   text-align: center;
   border-radius: 6px;
